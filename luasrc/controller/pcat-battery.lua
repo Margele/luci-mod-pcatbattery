@@ -20,6 +20,17 @@ function action_info()
 end
 
 function action_battery()
+    luci.http.prepare_content("application/json")
+
+	if not fs.access("/run/state/namespaces/Battery/OnBattery") then
+        local failed_response = {
+            status = 0
+        }
+    
+        luci.http.write_json(failed_response)
+        return
+    end
+
     local battery = luci.sys.exec("awk '{printf \"%.2f\", $1}' /run/state/namespaces/Battery/ChargePercentage").."%"
     local voltage = luci.sys.exec("awk '{printf \"%.0f\", $1/1000}' /run/state/namespaces/Battery/Voltage").."mV"
 
@@ -29,11 +40,11 @@ function action_battery()
     end
 
     local photonicat = {
+        status   = 1,
         battery  = battery,
         voltage  = voltage,
         charging = charging
     }
 
-    luci.http.prepare_content("application/json")
     luci.http.write_json(photonicat)
 end
