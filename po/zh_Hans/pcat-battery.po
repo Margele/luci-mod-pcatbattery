@@ -1,0 +1,18 @@
+msgid "Photonicat Status"
+msgstr "光影猫状态"
+
+msgid "Battery"
+msgstr "电量"
+
+msgid "Charging"
+msgstr "充电状态"
+
+msgid "Voltage"
+msgstr "电压"
+
+msgid "Yes"
+msgstr "是"
+
+msgid "No"
+msgstr "否"
+

@@ -1,0 +1,22 @@
+<script>
+XHR.poll(1, '<%=luci.dispatcher.build_url("admin", "services", "pcat-battery", "status")%>', null, function(x, info) {
+    if (e = document.getElementById('battery'))
+        e.innerHTML = info.battery;
+
+    if (e = document.getElementById('charging'))
+        e.innerHTML = info.charging;
+
+    if (e = document.getElementById('voltage'))
+        e.innerHTML = info.voltage;
+});
+</script>
+
+<fieldset class="cbi-section">
+    <legend><%:Photonicat Status%></legend>
+
+    <table width="100%" cellspacing="10">
+	<tr><td width="33%"><%:Battery%></td><td id="battery">-</td></tr>
+	<tr><td width="33%"><%:Charging%></td><td id="charging">-</td></tr>
+	<tr><td width="33%"><%:Voltage%></td><td id="voltage">-</td></tr>
+    </table>
+</fieldset>
